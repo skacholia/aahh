@@ -1,6 +1,6 @@
-import streamlit as st
 import openai
 import streamlit as st
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Athens Area Habitat for Humanity 🏠", page_icon=":house:", layout="wide")
 
@@ -8,7 +8,8 @@ st.set_page_config(page_title="Athens Area Habitat for Humanity 🏠", page_icon
 st.title("Your AI-powered Marketing Tool")
 st.subheader("A custom app built by **Athens AI**")
 
-openai.api_key = st.secrets["oai-key"]
+openai.api_key = "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"
+
 
 sections = st.selectbox(
     'What blog section would you like to write?',
@@ -69,6 +70,11 @@ def generic_completion(prompt, max_tokens):
     message = completions.choices[0].text
     return message.strip()
 
+def tweet(output):
+    return generic_completion(
+        "Generate a tweet for Athens Habitat for Humanity summarizing the following text."
+        "Make it engaging, and use a friendly, Southern tone:" + output, 30)
+
 if sections == 'Building the Community':
     event = st.text_area("Is there an event? If so, what are the details?")
     updates = st.text_area("Any other updates?")
@@ -83,6 +89,13 @@ if sections == 'Building the Community':
             st.write("```")
             st.write(output)
             st.write("```")
+            components.html(
+                f"""
+                                            <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="{tweet(output)}" data-url="https://www.athenshabitat.com/blog/"
+                                            data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                        """,
+                height=45,
+            )
         except:
             st.write("An error occurred while processing your request.")
 
@@ -99,8 +112,15 @@ elif sections == 'The Giving Spirit':
                 "Use a friendly Southern tone and base the post on the following example: " + prompt_giving +
                 "\nNew: ", 1000)
             st.write("```")
-            st.write(output)
+            st.text_area(output)
             st.write("```")
+            components.html(
+                f"""
+                                            <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="{tweet(output)}" data-url="https://www.athenshabitat.com/blog/"
+                                            data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                        """,
+                height=45,
+            )
         except:
             st.write("An error occurred while processing your request.")
 
@@ -118,6 +138,14 @@ elif sections == 'Volunteer Spotlight':
             st.write("```")
             st.write(output)
             st.write("```")
+            components.html(
+                f"""
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="{tweet(output)}" data-url="https://www.athenshabitat.com/blog/"
+                                data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            """,
+                height=45,
+            )
+
         except:
             st.write("An error occurred while processing your request.")
 
@@ -132,8 +160,15 @@ elif sections == 'Local Partners':
                                         "Base the post on the following example: " + prompt_partner +
                                         "\nNew: ", 1000)
             st.write("```")
-            st.write(output)
+            st.text_area(output)
             st.write("```")
+            components.html(
+                f"""
+                                            <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="{tweet(output)}" data-url="https://www.athenshabitat.com/blog/"
+                                            data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                        """,
+                height=45,
+            )
         except:
             st.write("An error occurred while processing your request.")
 
@@ -151,6 +186,13 @@ elif sections == 'What We\'re Up To':
             st.write("```")
             st.write(output)
             st.write("```")
+            components.html(
+                f"""
+                                            <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="{tweet(output)}" data-url="https://www.athenshabitat.com/blog/"
+                                            data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                        """,
+                height=45,
+            )
         except:
             st.write("An error occurred while processing your request.")
 
@@ -182,6 +224,13 @@ else:
                                         "a friendly Southern tone. The topic is " + prompt)
             st.write(output)
             st.write("```")
+            tweet = generic_completion(
+                "Generate a tweet for Athens Habitat for Humanity summarizing the following text."
+                "Make it engaging, and use a friendly, Southern tone:" + output)
+            components.html(
+                f"""
+                                              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="{tweet} data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                           """, height=45)
         except:
             st.write("An error occurred while processing your request.")
 
