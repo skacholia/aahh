@@ -8,7 +8,7 @@ st.set_page_config(page_title="Athens Area Habitat for Humanity 🏠", page_icon
 st.title("Your AI-powered Marketing Tool")
 st.subheader("A custom app built by **Athens AI**")
 
-openai.api_key = "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"
+openai.api_key = st.secrets["oai-key"]
 
 
 sections = st.selectbox(
