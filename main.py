@@ -197,9 +197,9 @@ elif sections == 'What We\'re Up To':
             st.write("An error occurred while processing your request.")
 
 elif sections == 'Homeowner Tips':
-    season = st.select_slider(
+    season = st.selectbox(
     'What season is it?',
-        options=['Spring', 'Summer', 'Fall', 'Winter'])
+        ('Spring', 'Summer', 'Fall', 'Winter'))
     if st.button(label="Generate Post"):
         try:
             st.write("```")
