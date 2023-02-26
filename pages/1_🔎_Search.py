@@ -38,13 +38,13 @@ query = st.text_input("Enter your query:")
 
 if st.button(label = "Answer"):
     try:
-        result = search_embed(df, query, 5)
+        result = search_embed(df, query, 7)
         context = result['paragraphs'].tolist()
         context = ' '.join(context)
         response = openai.Completion.create(
         engine="text-davinci-002",
-        prompt="Using the following context, answer the query. Be thorough, but don't include unnecessary details. Query: " + query + "\n Context:" + context,
-        max_tokens = 500)
+        prompt="Using the following context, answer the query. Be thorough, but don't include unnecessary details. If you are not sure, say I don't know. Query: " + query + "\n Context:" + context,
+        max_tokens = 1000)
         st.write(response.choices[0].text)
         st.write("\nLinks:")
         unique_links = result['link'].drop_duplicates().tolist()
