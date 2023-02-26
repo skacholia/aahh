@@ -41,7 +41,7 @@ if st.button(label = "Answer"):
         prompt="Using the following context, answer the query. Be thorough, but don't include unnecessary details. Query: " + query + "\n Context:" + context,
         max_tokens = 500)
         st.write(response.choices[0].text)
-        st.write("\nLinks:)
+        st.write("\nLinks:")
         unique_links = df['link'].drop_duplicates().tolist()
         st.write('\n'.join(unique_links))
     except:
