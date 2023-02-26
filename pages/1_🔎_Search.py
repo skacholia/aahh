@@ -30,14 +30,21 @@ def search_embed(df, description, n):
     return results
 
 query = st.text_input("How does Habitat for Humanity work?")
-result = search_embed(df, query, 5)
-context = result['paragraphs'].tolist()
-context = ' '.join(context)
-response = openai.Completion.create(
+
+if st.button(label = "Answer"):
+    try:
+        result = search_embed(df, query, 5)
+        st.write(result)
+        context = result['paragraphs'].tolist()
+        context = ' '.join(context)
+        response = openai.Completion.create(
         engine="text-davinci-002",
         prompt="Using the following context, answer the query. Be thorough, but don't include unnecessary details. Query: " + query + "\n Context:" + context,
-        max_tokens = 500
-    )
-st.write(response.choices[0].text)
+        max_tokens = 500)
+        st.write(response.choices[0].text)
+    except:
+        st.write("An error occurred while processing your request.")
+
+
 
 
