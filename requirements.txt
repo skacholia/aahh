@@ -1,7 +1,10 @@
 openai
 streamlit
-pandas
 matplotlib
+plotly
+plotly.express
 scipi
 numpy
 scikit-learn
+tenacity
+pillow
