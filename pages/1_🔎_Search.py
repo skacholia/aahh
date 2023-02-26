@@ -7,8 +7,8 @@ import ast
 
 openai.api_key = st.secrets["oai-key"]
 
-df1 = pd.read_csv("habitat1.csv")
-df2 = pd.read_csv("habitat2.csv")
+df1 = pd.read_csv("https://raw.githubusercontent.com/athensai/aahh/main/pages/habitat1.csv")
+df2 = pd.read_csv("https://raw.githubusercontent.com/athensai/aahh/main/pages/habitat2.csv")
 df = pd.concat([df1, df2])
 df['embeddings'] = df['embeddings'].apply(lambda x: ast.literal_eval(x))
 
