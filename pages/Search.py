@@ -5,7 +5,9 @@ import pandas as pd
 import ast
 
 openai.api_key = "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"
-df = pd.read_csv("habitat_embed.csv")
+df1 = pd.read_csv("habitat1.csv")
+df2 = pd.read_csv("habitat2.csv")
+df = pd.concat([df1, df2])
 df['embeddings'] = df['embeddings'].apply(lambda x: ast.literal_eval(x))
 
 def get_embedding(text, model="text-embedding-ada-002"):
