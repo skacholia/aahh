@@ -47,7 +47,7 @@ if st.button(label = "Answer"):
         max_tokens = 500)
         st.write(response.choices[0].text)
         st.write("\nLinks:")
-        unique_links = df['link'].drop_duplicates().tolist()
+        unique_links = result['link'].drop_duplicates().tolist()
         st.write('\n'.join(unique_links))
     except:
         st.write("An error occurred while processing your request.")
