@@ -44,7 +44,7 @@ if st.button(label = "Answer"):
         response = openai.Completion.create(
         engine="text-davinci-002",
         prompt="Using the following context, answer the query. Be thorough, but don't include unnecessary detail. If you are not sure, say I don't know. Query: " + query + "\n Context:" + context,
-        max_tokens = 1000)
+        max_tokens = 1000, temperature = 0.1)
         st.write(response.choices[0].text)
         st.write("\nLinks:")
         unique_links = result['link'].drop_duplicates().tolist()
