@@ -1,5 +1,6 @@
 from openai.embeddings_utils import get_embedding
 from openai.embeddings_utils import cosine_similarity
+import streamlit as st
 import openai
 import pandas as pd
 import ast
