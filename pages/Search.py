@@ -5,6 +5,8 @@ import openai
 import pandas as pd
 import ast
 
+openai.api_key = st.secrets["oai-key"]
+
 df1 = pd.read_csv("habitat1.csv")
 df2 = pd.read_csv("habitat2.csv")
 df = pd.concat([df1, df2])
