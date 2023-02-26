@@ -29,7 +29,7 @@ def search_embed(df, description, n):
     
     return results
 
-query = st.text_input("How does Habitat for Humanity work?")
+query = st.text_input("Enter your query:")
 
 if st.button(label = "Answer"):
     try:
