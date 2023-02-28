@@ -10,8 +10,8 @@ st.subheader("A custom app built by **Athens AI**")
 
 openai.api_key = st.secrets["oai-key"]
 
-st.write("This is a tool that will generate copy for Athens Area Habitat for Humanity, based on existing blogs. It uses OpenAI's GPT-3 service and " \
-         "Please enter as much information as you can, and GPT will handle the rest. \n " \
+st.write("This is a tool that will generate copy for Athens Area Habitat for Humanity, based on existing blogs. It uses OpenAI's GPT-3 service. " \
+         "\n\nPlease enter as much information as you can, and GPT will handle the rest. \n\n " \
          "Please be aware that GPT-3 might generate incorrect information, and editing output is still necessary. This is a demo, and "
          " has limitations.")
 
