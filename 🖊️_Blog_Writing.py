@@ -49,7 +49,7 @@ prompt_partner = "You need food for fuel if you’re going to get anything done,
 prompt_home = "Please write a homeowner tips section for low-income homeowners in the Athens-Clarke County area, with a focus on the season" \
               "that the user specifies. The section should provide useful and practical tips that will help these homeowners take care of " \
               "their property and save money on repairs and maintenance. Please ensure that the section is accessible and easy to understand, "\
-              "and that it covers a range of topics that are relevant to low-income homeowners in the area. Please write in a warm Southern tone" \ 
+              "and that it covers a range of topics that are relevant to low-income homeowners in the area. Please write in a warm Southern tone" \
               ", as if you are speaking directly to these homeowners."
 
 
