@@ -201,7 +201,7 @@ elif sections == 'Homeowner Tips':
         try:
             st.write("```")
 
-            output = generic_completion(prompt_home + "\nGenerate three, detailed homeowner tips. Each tip should be 4-5 sentences. 
+            output = generic_completion(prompt_home + "\nGenerate three, detailed homeowner tips. Each tip should be 4-5 sentences. "\
                                         "Separate each tip with a new line. The season is " + season + ". ", 800)
             st.write(output)
             st.write("```")
