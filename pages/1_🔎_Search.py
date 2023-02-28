@@ -34,6 +34,10 @@ def search_embed(df, description, n):
     
     return results
 
+st.write("This is an experimental semantic search built on Habitat for Humanity's website. Enter any query about " \
+         "Habitat, or its operations, and GPT-3 will attempt to answer your question. This is still a work-in-progress, " \
+         "and may occasionally output incorrect information.")
+st.write("\nExamples: 'Who is Spencer Frye?', 'How does Habitat work?', 'Who is eligible for Habitat?'")
 query = st.text_input("Enter your query:")
 
 if st.button(label = "Answer"):
