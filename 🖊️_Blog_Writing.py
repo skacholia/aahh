@@ -5,11 +5,15 @@ import streamlit.components.v1 as components
 st.set_page_config(page_title="Athens Area Habitat for Humanity 🏠", page_icon=":house:", layout="wide")
 
 
-st.title("Your AI-powered Marketing Tool")
+st.title("Habitat's AI-powered Marketing Tool")
 st.subheader("A custom app built by **Athens AI**")
 
 openai.api_key = st.secrets["oai-key"]
 
+st.write("This is a tool that will generate copy for Habitat, based on their existing blogs. It uses OpenAI's GPT-3 service and " \
+         "is based on Habitat's existing blogs. Please enter as much information as you can, and GPT will handle the rest. \n "
+         "Be aware that GPT-3 might generate incorrect information, and editing output is still necessary. This is a demo, and "
+         " has limitations."
 
 sections = st.selectbox(
     'What blog section would you like to write?',
@@ -42,18 +46,11 @@ prompt_partner = "You need food for fuel if you’re going to get anything done,
                 "(And if you’d like to get involved with the AAHFH Build an Appetite program, please contact our outreach director, " \
                  "Hannah Mitchell, at outreach@athenshabitat.com.)"
 
-prompt_home = "Autumn is beautiful, but like all seasons it has its share of pitfalls. Here are three smart tips for homeowners around Athens: " \
-                "**Before you stow your mower**: Did you know that gasoline has a shelf life? Yup, once it’s dispensed, if it’s left sitting too " \
-                "long some of the hydrocarbons will evaporate, others will oxygenate, and a substance called gum begins " \
-                "to form which is pretty much what it sounds like and you don’t want it in your engine. So either drain your " \
-                "tank and lines before storing your mower or add some fuel stabilizer to the tank so it can overwinter safely." \
-                "**One step for beautiful moss**: If you have hard soil in a shady area where grass won’t grow, one option is to let the moss take over. " \
-                "It’s pretty, requires no fertilizer, and is resistant to pests. But if you go this route, one step you need to take is to keep the leaves " \
-                "off in autumn. You can give it a pass with a bagging mower, or spend an afternoon getting some exercise by breaking out the rake."\
-                "**Get your flue shot**: Don’t wait until it’s time to build a fire in your fireplace or wood stove — have your flue inspected now. " \
-                "There’s no other way to know if you have a dangerous buildup of creosote in your flue (which can ignite at just over 450 degrees) or " \
-                "blockages from bird nests or debris. More than 25,000 chimney fires are set off every year in the US, causing over $100 million in property " \
-                "damage and around 500 deaths. So be safe and have your flue checked, and cleaned if necessary, before you light that first fire of the season."
+prompt_home = "Please write a homeowner tips section for low-income homeowners in the Athens-Clarke County area, with a focus on the season" \
+              "that the user specifies. The section should provide useful and practical tips that will help these homeowners take care of " \
+              "their property and save money on repairs and maintenance. Please ensure that the section is accessible and easy to understand, "\
+              "and that it covers a range of topics that are relevant to low-income homeowners in the area. Please write in a warm Southern tone" \ 
+              ", as if you are speaking directly to these homeowners."
 
 
 # Create a function that uses GPT to write a blog post
@@ -204,11 +201,8 @@ elif sections == 'Homeowner Tips':
         try:
             st.write("```")
 
-            output = generic_completion("Generate three, detailed homeowner tips. Each tip should be 4-5 sentences, and be clever. "
-                                        "Separate each tip with a new line. Make it specific to Athens, Georgia. The season is " + season + ". " \
-                                        "Example: " +
-                                        prompt_home + "\n"
-                                        "New: ", 800)
+            output = generic_completion(prompt_home + "\nGenerate three, detailed homeowner tips. Each tip should be 4-5 sentences. 
+                                        "Separate each tip with a new line. The season is " + season + ". ", 800)
             st.write(output)
             st.write("```")
         except:
