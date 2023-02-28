@@ -13,7 +13,7 @@ openai.api_key = st.secrets["oai-key"]
 st.write("This is a tool that will generate copy for Habitat, based on their existing blogs. It uses OpenAI's GPT-3 service and " \
          "is based on Habitat's existing blogs. Please enter as much information as you can, and GPT will handle the rest. \n "
          "Be aware that GPT-3 might generate incorrect information, and editing output is still necessary. This is a demo, and "
-         " has limitations."
+         " has limitations.")
 
 sections = st.selectbox(
     'What blog section would you like to write?',
