@@ -54,17 +54,14 @@ prompt_home = "Please write a homeowner tips section for low-income homeowners i
 
 
 # Create a function that uses GPT to write a blog post
-def generic_completion(prompt, max_tokens):
-    completions = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt= prompt,
-        max_tokens= max_tokens,
-        n=1,
-        stop=None,
-        temperature=0.85,
+def generic_completion(prompt):
+    completions = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo", 
+        messages=[{"role": "user", "content": prompt}])
+        temperature=0.85
     )
 
-    message = completions.choices[0].text
+    message = completions['choices'][0]['message']['content']
     return message.strip()
 
 def tweet(output):
@@ -82,7 +79,7 @@ if sections == 'Building the Community':
                 "Generate a detailed, lengthy blog post for Athens Area Habitat for Humanity about " + updates +
                 ". Mention the event: " + event + ". Also mention these facts: " + facts +
                 "Use a friendly Southern tone." +
-                "\nPost: ", 1300)
+                "\nPost: ")
             st.write("```")
             st.write(output)
             st.write("```")
@@ -107,7 +104,7 @@ elif sections == 'The Giving Spirit':
                 "Generate a blog post for Athens Area Habitat for Humanity about receiving " + donations + " from " +
                 donor + ". Here are some more details: " + details +
                 "Use a friendly Southern tone and base the post on the following example: " + prompt_giving +
-                "\nNew: ", 1000)
+                "\nNew: ")
             st.write("```")
             st.text_area(output)
             st.write("```")
@@ -179,7 +176,7 @@ elif sections == 'What We\'re Up To':
                                         "lowest home ownership rates in the United States, and our mission is to build, renovate and repair "
                                         "decent, affordable houses for everyone."
                                         "Base the post on the following updates: " + updates +
-                                        ". And these details: " + details, 1300)
+                                        ". And these details: " + details)
             st.write("```")
             st.write(output)
             st.write("```")
@@ -202,7 +199,7 @@ elif sections == 'Homeowner Tips':
             st.write("```")
 
             output = generic_completion(prompt_home + "\nGenerate three, detailed homeowner tips. Each tip should be 4-5 sentences. "\
-                                        "Separate each tip with a new line. The season is " + season + ". ", 800)
+                                        "Separate each tip with a new line. The season is " + season + ". ")
             st.write(output)
             st.write("```")
         except:
